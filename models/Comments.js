@@ -11,22 +11,26 @@ Comments.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    commentersName: {
+    comments_text: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    comment: {
-      type: DataTypes.TEXT,
-    },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
+      validate: {
+          len: [1]
+      }
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'user',
+        key: 'id',
+      },
+    },
+    project_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'project',
         key: 'id',
       },
     },
@@ -36,7 +40,7 @@ Comments.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: 'comments'
   }
 );
 

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { Project, User,Comments } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -12,7 +12,12 @@ router.get('/', async (req, res) => {
           attributes: ['name'],
         },
       ],
-    });
+      include: [
+        {
+          model: Comments,
+          attributes: ['id', 'comments_text', 'project_id', 'user_id'],
+      
+    }]});
 
     // Serialize data so the template can read it
     const projects = projectData.map((project) => project.get({ plain: true }));
@@ -35,7 +40,12 @@ router.get('/project/:id', async (req, res) => {
           model: User,
           attributes: ['name'],
         },
-      ],
+      ],  include: [
+        {
+          model: Comments,
+          attributes: ['id', 'comments_text', 'project_id', 'user_id',],
+      
+    }],
     });
 
     const project = projectData.get({ plain: true });

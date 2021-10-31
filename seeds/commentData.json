@@ -1,0 +1,15 @@
+[{
+    "comments_text": "Nice",
+    "user_id": 1,
+    "project_id": 1
+},
+{
+    "comments_text": "cool",
+    "user_id": 2,
+    "project_id": 2
+},
+{
+    "comments_text": "I agree",
+    "user_id": 3,
+    "project_id": 3
+}]
