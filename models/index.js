@@ -22,7 +22,7 @@ Comments.belongsTo(Project, {
 });
 
 User.hasMany(Comments, {
-  foreignKey: 'project_id',
+  foreignKey: 'user_id',
   onDelete: "cascade"
 });
 
