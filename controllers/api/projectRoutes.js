@@ -40,10 +40,11 @@ router.get('/', (req, res) => {
   console.log('getting users');
   Project.findAll({
       attributes: [
-          'id',
-          'name',
-          // 'date_created',
-          'description'
+        'id',
+        'name',
+        'date_created',
+        'description',
+        'user_id',
       ],
     // order: [['date_created', 'DESC']],
     include: [
@@ -78,18 +79,18 @@ router.get('/:id', (req, res) => {
     ],
     include: [
       {
+        model: Comments,
+        attributes: ['id', 'comments_text', 'project_id', 'user_id',],
+        include: {
+          model: User,
+          attributes: ['name']
+      },
+      },
+      {
         model: User,
-        as:"user",
         attributes: ['name']
       },
-    ],
-    include: [
-      {
-        model: Comments,
-        as: "comments",
-        attributes: ["id", "comments_text", "user_id"],
-      },
-    ],
+    ]
   })
     .then(projectData => {
       if (!projectData) {

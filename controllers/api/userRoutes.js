@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const {User, Project, Comment  } = require('../../models');
 
 router.post('/', async (req, res) => {
   try {
@@ -60,7 +60,7 @@ router.post('/logout', (req, res) => {
 
 router.get("/", (req, res) => {
   User.findAll({
-    attributes: ["id", "username", "email", "password"],
+    attributes: ["id", "name", "email", "password"],
     include: [
       {
         model: Project,
@@ -70,7 +70,7 @@ router.get("/", (req, res) => {
       {
         model: Comment,
         as: "comments",
-        attributes: ["id", "comment_text", "post_id"],
+        attributes: ["id", "comments_text", "post_id"],
       },
     ],
   }) //include the posts and comments of this user
@@ -99,7 +99,7 @@ router.get("/:id", (req, res) => {
       {
         model: Comment,
         as: "comments",
-        attributes: ["id", "comment_text", "post_id"],
+        attributes: ["id", "comments_text", "post_id"],
       },
     ],
   }) //include the posts and comments of this user

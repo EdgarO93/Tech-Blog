@@ -22,6 +22,7 @@ async function submitCommentHandler(event) {
      
       if (response.ok) {
         document.location.reload();
+        console.log("success")
       } else {
         alert(response.statusText); 
       }

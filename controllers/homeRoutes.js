@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
         {
           model: Comments,
           attributes: ['id', 'comments_text', 'project_id', 'user_id'],
-          include: {
-            model: User,
-            attributes: ['id']
-          }
+          // include: {
+          //   model: User,
+          //   attributes: ['id']
+          // }
       
     }]});
 
@@ -48,12 +48,13 @@ router.get('/project/:id', async (req, res) => {
         {
           model: Comments,
           attributes: ['id', 'comments_text', 'project_id', 'user_id',],
-           include: {
-            model: User,
-            attributes: ['id']
+          //  include: {
+          //   model: User,
+          //   attributes: ['id']
           }
       
-    }],
+    // }
+  ],
     });
 
     const project = projectData.get({ plain: true });

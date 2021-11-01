@@ -1,7 +1,7 @@
 
-<div class="card single-post-padding">
-    <h1 id="post-title" class="post-header">{{project.name}} </h1>
-    <h4>Posted by {{project.user.name}} on {{format_date date_created}}</h4>
+{{!-- <div class="card single-post-padding">
+    <h1 id="post-title" class="post-header">{{name}} </h1>
+    <h4>Posted by {{user.name}} on {{format_date date_created}}</h4>
     <div class="container">
         <p id="post-body" class="post-text post-text-padding">{{project.description}}</p>
     </div>
@@ -20,8 +20,8 @@
     </form>
 </div>
 {{!-- Handle the comments --}}
-{{#each project.comments as |aComment|}}
-{{> comment aComment}}
+{{#each project.comments as |Comment|}}
+{{> post Comment}}
 {{/each}}
 {{!-- <link rel="stylesheet" href="/css/single-post.css"> --}}
-<script src="../public/js/single-post.js"></script>
+<script src="../public/js/single-post.js"></script> --}}

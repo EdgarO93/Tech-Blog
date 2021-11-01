@@ -18,7 +18,7 @@ const seedDatabase = async () => {
   for (const project of projectData) {
     await Project.create({
       ...project,
-      // user_id: users[Math.floor(Math.random() * users.length)].id,
+      user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
 
@@ -30,7 +30,7 @@ const seedDatabase = async () => {
   for (const comments of commentData) {
     await Comments.create({
       ...comments,
-      // project_id: projects[Math.floor(Math.random() * projects.length)].id,
+      project_id: projects[Math.floor(Math.random() * projects.length)].id,
     });
   }
 
