@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 //get all the comments
 router.get("/", (req, res) => {
   Comments.findAll({
-    attributes: ["id", "comment_text", "user_id", "project_id"],
+    attributes: ["id", "comments_text", "user_id", "project_id"],
     include: [
       {
         model: User,
@@ -29,7 +29,7 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "comment_text", "user_id", "post_id"],
+    attributes: ["id", "comments_text", "user_id", "project_id"],
     include: [
       {
         model: User,
@@ -55,12 +55,12 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   //expects comment_text, user_id, post_id
   Comments.create({
-    comments_text: req.body.comment_text,
+    comments_text: req.body.comments_text,
     user_id: req.session.user_id,
-    project_id: req.body.post_id,
+    project_id: req.body.project_id,
   })
-    .then((dbCommentData) => {
-      res.json(dbCommentData);
+    .then((CommentData) => {
+      res.json(CommentData);
     })
     .catch((err) => {
       console.log(err);

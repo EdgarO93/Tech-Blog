@@ -58,4 +58,64 @@ router.post('/logout', (req, res) => {
   }
 });
 
+router.get("/", (req, res) => {
+  User.findAll({
+    attributes: ["id", "username", "email", "password"],
+    include: [
+      {
+        model: Project,
+        as: "projects",
+        attributes: ["id", "title", "body"],
+      },
+      {
+        model: Comment,
+        as: "comments",
+        attributes: ["id", "comment_text", "post_id"],
+      },
+    ],
+  }) //include the posts and comments of this user
+    .then((userData) => {
+      res.json(userData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+//get user by id
+router.get("/:id", (req, res) => {
+  User.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "name", "email", "password"],
+    include: [
+      {
+        model: Project,
+        as: "projects",
+        attributes: ["id", "title", "body"],
+      },
+      {
+        model: Comment,
+        as: "comments",
+        attributes: ["id", "comment_text", "post_id"],
+      },
+    ],
+  }) //include the posts and comments of this user
+    .then((userData) => {
+      if (!userData) {
+        res.status(404).json({ message: "No User found with this id" });
+        return;
+      }
+      res.json(userData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+
+
 module.exports = router;
