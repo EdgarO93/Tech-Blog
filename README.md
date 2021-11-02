@@ -3,7 +3,7 @@
 
 Link to deployed site on Heroku: https://edgar-tech-blog.herokuapp.com/
 ## Description
-CMS-style blog site about tech.
+The Tech Blog was build with Node.js, MySQL, Handlebars.js, and the use of the Model View Controller. This app was able to be deployed with Heroku. This app supports account creating with secure password hashing with Bcrypt and storage as well as the ability to log in. User will be able to see all posts before loggin in as well as being able to delete the posts they have made in their dashboard. They can also create posts at the dashboard. In future versions, I would like to add comments and the ability to update posts. 
 
 ## Table of Contents
 
