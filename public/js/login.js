@@ -39,7 +39,7 @@ const loginFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace('/profile');
       } else {
-        alert(response.statusText);
+        alert('make sure your password length is greater than 8!');
       }
     }
   };
